@@ -1,6 +1,5 @@
 import {Router} from 'express';
 import {MovieController} from '../controllers/movies.js';
-import { MovieModel } from '../models/local/movie';
 
 export  const movieRouter = ({MovieModel}) =>{
     const moviesRouter = Router();

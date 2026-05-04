@@ -4,7 +4,7 @@ const movieSchema = z.object({
     title: z.string({
         invalid_type_error: 'Movie title must be a string.',
         required_error: 'Movie title is required.',
-    }),
+    }).min(4, 'Movie title must be at least 4 characters long.'),
     year: z.number().int().min(1990).max(2025),
     director: z.string(),
     duration: z.number().int().positive(),
@@ -12,7 +12,7 @@ const movieSchema = z.object({
     poster: z.string().url({
         message: 'Poster must be a valid URL.',
     }),
-    genre:z.array( z.enum(['Action', 'Comedy', 'Crime', 'Horror', 'Fantasy', 'Romance', 'Adventure', 'Sci-Fi', 'Thriller']),{
+    genre:z.array( z.enum(['Action', 'Comedy', 'Crime', 'Horror', 'Fantasy', 'Romance', 'Adventure', 'Sci-Fi', 'Thriller', 'Drama']),{
         required_error: 'Genre is required.',
         invalid_type_error: 'Movie genre must be an array of enum genres.',
     },

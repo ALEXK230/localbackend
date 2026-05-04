@@ -1,0 +1,40 @@
+##OBTENER TODAS LAS PELICULAS
+GET http://localhost:3000/movies
+
+###
+
+##OBTENER  UNA PELICULA POR ID
+
+GET http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+###
+
+##OBTENER POR GENERO
+GET http://localhost:3000/movies?genre=action
+
+###
+
+##CREAR UNA PELICULA
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "The Dark Knight",
+    "year": 2020,
+    "director": "Christopher Nolan",
+    "duration": 152,
+    "poster": "https://m.media-amazon.com/images/I/51EbJjlL9-L._AC_.jpg",
+    "genre": ["Action", "Crime", "Thriller"]
+}
+
+###
+
+##ACTUALIZAR UNA PELICULA
+PATCH http://localhost:3000/movies/69a141e3-8988-4367-882a-33c257ae5615
+Content-Type: application/json
+
+{
+    "title": "The Dark Knight Rises",
+    "year": 2022,
+    "duration": 155
+}

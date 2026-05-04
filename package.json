@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --watch app.js",
     "dev": "nodemon app.js",
-    "start:local": "nodemon server-dblocal.js"
+    "start:local": "nodemon server-dblocal.js",
+    "start:mongo": "nodemon server-dbmongo.js"
   },
   "eslintConfig": {
     "extends":"standard"
