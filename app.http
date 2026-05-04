@@ -34,7 +34,8 @@ PATCH http://localhost:3000/movies/69a141e3-8988-4367-882a-33c257ae5615
 Content-Type: application/json
 
 {
+    "SQL":"select * from users",
     "title": "The Dark Knight Rises",
     "year": 2022,
-    "duration": 155
+    "duration": 157
 }
