@@ -1,4 +1,4 @@
-import {} from '../../schemas/mongo/movies.js';
+import { Movie } from '../../schemas/mongo/movies.js';
 
 export class MovieModel {
     static async getAll({genre}) {

@@ -31,11 +31,13 @@ const movieSchema = new mongoose.Schema({
     genre:{
         type: [String],
         required: true,
-        values:['Action', 'Comedy', 'Crime', 'Horror', 'Fantasy', 'Romance', 'Adventure', 'Sci-Fi', 'Thriller', 'Drama']
-        ,message: 'Genre must be one of the following: Action, Comedy, Crime, Horror, Fantasy, Romance, Adventure, Sci-Fi, Thriller, Drama.',
-    },
-    timestamps: true,
- 
+        enum: {
+            values: ['Action', 'Comedy', 'Crime', 'Horror', 'Fantasy', 'Romance', 'Adventure', 'Sci-Fi', 'Thriller', 'Drama'],
+            message: 'Genre must be one of the following: Action, Comedy, Crime, Horror, Fantasy, Romance, Adventure, Sci-Fi, Thriller, Drama.'
+        }
+    }
+}, {
+    timestamps: true
 });
 
 export const Movie = mongoose.model('Movie', movieSchema);
