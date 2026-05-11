@@ -1,13 +1,31 @@
 import mongoose from "mongoose";
 
-const createDB =async()=>{
-    try {
-        const conn= await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.warn(`Error connecting to MongoDB: ${error.message}`);
-        console.warn('Continuing without database connection.');
-    }
+function sleep(ms){
+    return new Promise(resolve=>setTimeout(resolve, ms))
 }
 
-export default createDB;
+const createDB = async ({retries = 5, delay = 2000} = {}) => {
+    const uri = process.env.MONGO_URI
+    if(!uri) throw new Error('MONGO_URI not set')
+
+    let lastErr = null
+    for(let attempt=1; attempt<=retries; attempt++){
+        try{
+            const conn = await mongoose.connect(uri, {
+                serverSelectionTimeoutMS: 5000,
+                connectTimeoutMS: 5000
+            })
+            console.log(`MongoDB connected: ${conn.connection.host} (attempt ${attempt})`)
+            return conn
+        }catch(err){
+            lastErr = err
+            console.warn(`MongoDB connect attempt ${attempt} failed: ${err.message}`)
+            if(attempt < retries) await sleep(delay)
+        }
+    }
+
+    console.error(`All MongoDB connection attempts failed (${retries}). Last error: ${lastErr?.message}`)
+    throw lastErr
+}
+
+export default createDB

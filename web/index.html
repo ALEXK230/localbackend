@@ -20,6 +20,7 @@
     <script type="module">
         const API_BASES = [
           'http://localhost:3001',
+          'http://localhost:3002',
           'http://localhost:3000'
         ]
 
@@ -42,16 +43,19 @@
         const renderMovies = async () => {
           const { baseUrl, movies } = await getMovies()
 
-          const html = movies.map(movie => {
+            const placeholder = 'https://via.placeholder.com/320x480?text=No+Image'
+
+            const html = movies.map(movie => {
+            const poster = movie.poster || placeholder
             return `
-                <article data-id="${movie._id || movie.id}">
-                    <h2>${movie.title}</h2>
-                    <img src="${movie.poster}" alt="${movie.title}">
-                    <p>${movie.year}</p>
-                    <button>Eliminar</button>
-                </article>
-                `
-          }).join('')
+              <article data-id="${movie._id || movie.id}">
+                <h2>${movie.title}</h2>
+                <img src="${poster}" alt="${movie.title}" onerror="this.onerror=null;this.src='${placeholder}'">
+                <p>${movie.year}</p>
+                <button>Eliminar</button>
+              </article>
+              `
+            }).join('')
 
           document.querySelector('main').innerHTML = html
 

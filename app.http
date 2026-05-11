@@ -1,5 +1,5 @@
 ##OBTENER TODAS LAS PELICULAS
-GET http://localhost:3000/movies
+GET http://localhost:3001/movies
 
 ###
 
@@ -14,7 +14,7 @@ GET http://localhost:3000/movies?genre=action
 
 
 ###CREAR UNA PELICULA
-POST http://localhost:3000/movies
+POST http://localhost:3002/movies
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
     "year": 2020,
     "director": "Christopher Nolan",
     "duration": 152,
-    "poster": "https://m.media-amazon.com/images/I/51EbJjlL9-L._AC_.jpg",
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
     "genre": ["Action", "Crime", "Thriller"]
 }
 

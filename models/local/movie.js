@@ -42,4 +42,9 @@ export class MovieModel{
         }
         return movies[movieIndex];
     }
+
+    static clearAll(){
+        // empty the in-memory array
+        movies.length = 0;
+    }
 }
