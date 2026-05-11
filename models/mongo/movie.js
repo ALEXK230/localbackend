@@ -1,4 +1,9 @@
 import { Movie } from '../../schemas/mongo/movies.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export class MovieModel {
     static async getAll({genre}) {
@@ -27,6 +32,20 @@ export class MovieModel {
     static async update({id, input}) {
         const updatedMovie = await Movie.findByIdAndUpdate(id, input, {new: true, runValidators: true});
         return updatedMovie;
+    }
+
+    static async seedDatabase() {
+        try {
+            const count = await Movie.countDocuments();
+            if (count === 0) {
+                const moviesPath = path.join(__dirname, '../../movies.json');
+                const moviesData = JSON.parse(fs.readFileSync(moviesPath, 'utf-8'));
+                await Movie.insertMany(moviesData);
+                console.log(`✅ Loaded ${moviesData.length} movies from movies.json`);
+            }
+        } catch (error) {
+            console.warn(`⚠️  Could not seed database: ${error.message}`);
+        }
     }
 
 }
