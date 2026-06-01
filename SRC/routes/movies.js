@@ -9,7 +9,6 @@ export  const movieRouter = ({MovieModel}) =>{
     moviesRouter.get('/:id', movieController.getById);
     moviesRouter.post('/', movieController.create);
     moviesRouter.delete('/:id', movieController.delete);
-    moviesRouter.put('/:id', movieController.update);
     moviesRouter.patch('/:id', movieController.update);
 
     return moviesRouter;

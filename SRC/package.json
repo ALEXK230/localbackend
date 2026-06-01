@@ -1,0 +1,33 @@
+{
+  "name": "apibackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --watch app.js",
+    "dev": "nodemon app.js",
+    "start:local": "nodemon server-dblocal.js",
+    "start:mongo": "nodemon server-dbmongo.js",
+    "start:mysql": "nodemon server-dbmysql.js"
+  },
+  "eslintConfig": {
+    "extends":"standard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "2.8.6",
+    "dotenv": "17.4.2",
+    "express": "5.2.1",
+    "mongodb": "7.2.0",
+    "mongoose": "9.5.0",
+    "mysql2": "3.22.3",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.14",
+    "standard": "17.1.2"
+  }
+}
